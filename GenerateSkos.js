@@ -60,7 +60,7 @@ function createPreamble(sheet, startingRow) {
   setValuesByRow(sheet, startingRow + 1, prefixes);
   return startingRow + prefixes.length + 1;
 }
-				
+
 function createHeader(sheet, startingRow) {
   setHeader(sheet, startingRow, 1, "URI", 175);
   setHeader(sheet, startingRow, 2, "skos:prefLabel", 250);
@@ -91,9 +91,15 @@ function createConceptRecords(sheet, startingRow) {
 }
 
 function createFieldRecords(sheet, startingRow) {
-  const fields = getFieldSheet().getDataRange().getValues()
-      .slice(1)  // remove the table header
-      .filter((row) => !row[8] || row[8] === '') // not deprecated terms
+  const fieldSheet = getFieldSheet();
+  if (!fieldSheet) {
+    return startingRow;
+  }
+  const records = fieldSheet.getDataRange().getValues().slice(1);  // remove the table header
+  if (records.length === 0) {
+    return startingRow;
+  }
+  const fields = records.filter((row) => !row[8] || row[8] === '') // not deprecated terms
       .map((row) => {
         const uri = row[0];
         const prefLabel = toSnakeCase(row[1]);
