@@ -9,26 +9,36 @@ A app tool to streamline the creation and management of CEDAR metadata templates
    npm install -g @google/clasp
    ```
 
-2. Clone this project to your local machine.
+2. Enable the Google Apps Script API by visiting https://script.google.com/home/usersettings.
+   
+   <img width="500" alt="Screenshot 2024-12-04 at 11 58 18 AM" src="https://github.com/user-attachments/assets/40244387-5555-4add-9625-8c42033019a1">
+
+
+3. Login to your Google Drive account to enable the CLI commands.
+   ```
+   clasp login
+   ```
+
+4. Clone this project to your local machine.
    ```
    git clone https://github.com/metadatacenter/cedar-template-builder-for-gsheet.git
    ```
 
-3. Create a new spreadsheet file in your project folder in Google Drive.
+5. Create a new spreadsheet file in your project folder in Google Drive.
 
    <img width="500" alt="Screenshot 2024-12-03 at 2 38 23 PM" src="https://github.com/user-attachments/assets/b7bffe31-9674-48e9-b44a-08fbe071479f">
 
 
-5. In your spreadsheet, go to **Extensions > Apps Script** to open the script editor.
+6. In your spreadsheet, go to **Extensions > Apps Script** to open the script editor.
 
    <img width="520" alt="Screenshot 2024-12-03 at 2 39 44 PM" src="https://github.com/user-attachments/assets/9ecf3ff6-87d4-40bc-9697-4dc757229e66">
 
 
-6. In the Apps Script editor, go to **Project Settings** from the left-hand menu bar and copy the Script ID using the "Copy" button.
+7. In the Apps Script editor, go to **Project Settings** from the left-hand menu bar and copy the Script ID using the "Copy" button.
 
    <img width="500" alt="Screenshot 2024-12-03 at 2 42 50 PM" src="https://github.com/user-attachments/assets/7b8c1c7f-360e-4b51-b68a-c1048e46a0db">
 
-8. Navigate to the project folder and link it to your remote Apps Script project using the Script ID:
+8. Navigate to the project folder and link it to your remote Apps Script project using the Script ID.
    ```
    $ cd cedar-template-builder-for-gsheet
    $ clasp clone [PASTE SCRIPT ID HERE] --rootDir `pwd`
@@ -73,3 +83,4 @@ A app tool to streamline the creation and management of CEDAR metadata templates
 5. Share the spreadsheet with the setting **"Anyone with the link"** and grant at least **Viewer** access to grant a read access to third-party APIs.
 
    <img width="500" alt="Screenshot 2024-12-03 at 5 10 09 PM" src="https://github.com/user-attachments/assets/45c7bb4b-d192-4f3e-b489-691fc6bf6f87">
+
