@@ -16,17 +16,17 @@ A app tool to streamline the creation and management of CEDAR metadata templates
 
 3. Create a new spreadsheet file in your project folder in Google Drive.
 
-   <img width="400" alt="Screenshot 2024-12-03 at 2 38 23 PM" src="https://github.com/user-attachments/assets/b7bffe31-9674-48e9-b44a-08fbe071479f">
+   <img width="500" alt="Screenshot 2024-12-03 at 2 38 23 PM" src="https://github.com/user-attachments/assets/b7bffe31-9674-48e9-b44a-08fbe071479f">
 
 
 5. In your spreadsheet, go to **Extensions > Apps Script** to open the script editor.
 
-   <img width="420" alt="Screenshot 2024-12-03 at 2 39 44 PM" src="https://github.com/user-attachments/assets/9ecf3ff6-87d4-40bc-9697-4dc757229e66">
+   <img width="520" alt="Screenshot 2024-12-03 at 2 39 44 PM" src="https://github.com/user-attachments/assets/9ecf3ff6-87d4-40bc-9697-4dc757229e66">
 
 
 6. In the Apps Script editor, go to **Project Settings** from the left-hand menu bar and copy the Script ID using the "Copy" button.
 
-   <img width="400" alt="Screenshot 2024-12-03 at 2 42 50 PM" src="https://github.com/user-attachments/assets/7b8c1c7f-360e-4b51-b68a-c1048e46a0db">
+   <img width="500" alt="Screenshot 2024-12-03 at 2 42 50 PM" src="https://github.com/user-attachments/assets/7b8c1c7f-360e-4b51-b68a-c1048e46a0db">
 
 8. Navigate to the project folder and link it to your remote Apps Script project using the Script ID:
    ```
@@ -41,13 +41,13 @@ A app tool to streamline the creation and management of CEDAR metadata templates
    
 10. Refresh the spreadsheet to activate the code.
 
-    <img width="450" alt="Screenshot 2024-12-03 at 3 08 41 PM" src="https://github.com/user-attachments/assets/db0875b5-784a-4ec3-b282-79e9b8953efe">
+    <img width="550" alt="Screenshot 2024-12-03 at 3 08 41 PM" src="https://github.com/user-attachments/assets/db0875b5-784a-4ec3-b282-79e9b8953efe">
 
 ## Initial Setup
 
 1. Select **Extensions > Apps Script** and navigate to **Project Settings**. Scroll down to locate **Script Properties**.
 
-   <img width="500" alt="Screenshot 2024-12-03 at 3 30 54 PM" src="https://github.com/user-attachments/assets/7ec418f1-d5de-4790-ac3b-6d0087aa2f31">
+   <img width="550" alt="Screenshot 2024-12-03 at 3 30 54 PM" src="https://github.com/user-attachments/assets/7ec418f1-d5de-4790-ac3b-6d0087aa2f31">
 
 
 2. Add the following properties and their values.
