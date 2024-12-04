@@ -1,8 +1,10 @@
 # CEDAR Template Builder for Google Sheets
 
-A app tool to streamline the creation and management of CEDAR metadata templates that works seamlessly with Google Sheets.
+An app tool to streamline the creation and management of CEDAR metadata templates that works seamlessly with Google Sheets.
 
-## Development Setup
+## Installation
+
+This step-by-step instruction will guide you to install the app tool from its source code to your own spreadsheet in Google Sheets.
 
 1. Install [clasp](https://github.com/google/clasp).
    ```
@@ -55,10 +57,11 @@ A app tool to streamline the creation and management of CEDAR metadata templates
 
 ## Initial Setup
 
+Follow this instruction to set up the environment variables and initialize the tool for the first time.
+
 1. Select **Extensions > Apps Script** and navigate to **Project Settings**. Scroll down to locate **Script Properties**.
 
    <img width="550" alt="Screenshot 2024-12-03 at 3 30 54 PM" src="https://github.com/user-attachments/assets/7ec418f1-d5de-4790-ac3b-6d0087aa2f31">
-
 
 2. Add the following properties and their values.
    
@@ -73,14 +76,15 @@ A app tool to streamline the creation and management of CEDAR metadata templates
 3. Go back to the spreadsheet and select **Automation > New metadata specification...** from the spreadsheet menu. Resolve any authorization prompts that appear.
 
    <img width="400" alt="Screenshot 2024-12-03 at 3 26 06 PM" src="https://github.com/user-attachments/assets/8c0cbafb-d37a-4acc-a643-aec162541f7e">
-
    
-4. Upon initialization, three system-required sheets will be auto-generated:
+4. Executing the create a new metadata specification command for the first time will trigger the auto-generation of 3 system-required sheets for storing the fields, value sets and prefixes:
    * `.FIELDS`: Used to store reusable template fields.
    * `.VALUESETS`: Used to store the value sets.
    * `.PREFIXES`: Used to store concept prefixes referenced in value sets.
+  
+5. Enter a preferred name for the new metadata specification in the dialog box. This will automatically generate a new sheet where you can define the specification.
 
-5. Share the spreadsheet with the setting **"Anyone with the link"** and grant at least **Viewer** access to grant a read access to third-party APIs.
+6. Share the spreadsheet with the setting **"Anyone with the link"** and grant at least **Viewer** access to grant a read access to third-party APIs.
 
    <img width="500" alt="Screenshot 2024-12-03 at 5 10 09 PM" src="https://github.com/user-attachments/assets/45c7bb4b-d192-4f3e-b489-691fc6bf6f87">
 
