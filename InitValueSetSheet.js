@@ -15,9 +15,9 @@ function initvalueSetSheet(sheetName) {
   setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_MAPPED_TO_TERM_ID, "Mapped To", 150);
   valueSetSheet.getRange(1, 1, 1, 2).mergeAcross();
   setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_CATEGORY, "Category", 150);
-  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_VALUE_LABEL, "Value Label", 150);
-  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_VALUE_DESCRIPTION, "Value Description", 520);
-  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_FORMAL_LABEL, "Concept Label", 150);
+  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_VALUE_LABEL, "Preferred Label", 150);
+  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_VALUE_DESCRIPTION, "Description", 520);
+  setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_FORMAL_LABEL, "Canonical Label", 150);
   setHeader(valueSetSheet, 1, VALUESET_GLOSSARY_IS_DEPRECATED, "Is Deprecated?", 150);
 
   // Give color to selected columns
