@@ -69,3 +69,7 @@ A app tool to streamline the creation and management of CEDAR metadata templates
    * `.FIELDS`: Used to store reusable template fields.
    * `.VALUESETS`: Used to store the value sets.
    * `.PREFIXES`: Used to store concept prefixes referenced in value sets.
+
+5. Share the spreadsheet with the setting **"Anyone with the link"** and grant at least **Viewer** access.
+
+   <img width="500" alt="Screenshot 2024-12-03 at 5 10 09 PM" src="https://github.com/user-attachments/assets/45c7bb4b-d192-4f3e-b489-691fc6bf6f87">
