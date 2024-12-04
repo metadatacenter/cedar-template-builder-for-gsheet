@@ -1,27 +1,27 @@
 function createNew() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheetIndex =  ss.getActiveSheet().getIndex();
+  const sheetIndex = ss.getActiveSheet().getIndex();
 
   /*
    * Check mandatory data storage sheets.
    */
-  if (!ss.getSheetByName(".FIELDS")) {
-    const progressBar = startProcessing(ss, "Initializing .FIELDS sheet (only once)...")
-    initFieldSheet(".FIELDS");
+  if (!ss.getSheetByName(FIELD_STORE_SHEET)) {
+    const progressBar = startProcessing(ss, "Initializing " + FIELD_STORE_SHEET + " sheet...")
+    initFieldSheet(FIELD_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
-  if (!ss.getSheetByName(".VALUESETS")) {
-    const progressBar = startProcessing(ss, "Initializing .VALUESETS sheet (only once)...")
-    initvalueSetSheet(".VALUESETS");
+  if (!ss.getSheetByName(VALUESET_STORE_SHEET)) {
+    const progressBar = startProcessing(ss, "Initializing " + VALUESET_STORE_SHEET + " sheet...")
+    initvalueSetSheet(VALUESET_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
-  if (!ss.getSheetByName(".PREFIXES")) {
-    const progressBar = startProcessing(ss, "Initializing .PREFIXES sheet (only once)...")
-    initPrefixSheet(".PREFIXES");
+  if (!ss.getSheetByName(PREFIX_STORE_SHEET)) {
+    const progressBar = startProcessing(ss, "Initializing " + PREFIX_STORE_SHEET + " sheet...")
+    initPrefixSheet(PREFIX_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
 
-  const specificationName = prompt("Please enter the specification name:");
+  const specificationName = prompt("Enter the new specification name:");
 
   const progressBar = startProcessing(ss, "Preparing...")
   const templateSheet = ss.insertSheet(specificationName, sheetIndex);
