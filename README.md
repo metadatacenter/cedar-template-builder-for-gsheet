@@ -60,7 +60,7 @@ A app tool to streamline the creation and management of CEDAR metadata templates
    | value_selection_limit | 100 |
    | value_selection_offset | 25 |
    
-3. Select **Automation > New metadata specification...** from the spreadsheet menu. Resolve any authorization prompts that appear.
+3. Go back to the spreadsheet and select **Automation > New metadata specification...** from the spreadsheet menu. Resolve any authorization prompts that appear.
 
    <img width="400" alt="Screenshot 2024-12-03 at 3 26 06 PM" src="https://github.com/user-attachments/assets/8c0cbafb-d37a-4acc-a643-aec162541f7e">
 
