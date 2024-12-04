@@ -88,3 +88,36 @@ Follow this instruction to set up the environment variables and initialize the t
 
    <img width="500" alt="Screenshot 2024-12-03 at 5 10 09 PM" src="https://github.com/user-attachments/assets/45c7bb4b-d192-4f3e-b489-691fc6bf6f87">
 
+
+## Contributing
+
+Follow the workflow below to contribute on the code development of this software.
+
+1. Navigate to the project folder and make a new branch and switch to it.
+   ```
+   git checkout -b feat/xyz
+   ```
+   
+2. Write your code using the Apps Script editor in the browser.
+3. Download the new code to your local project folder.
+   ```
+   clasp pull
+   ```
+   
+4. Create a commit.
+   ```
+   $ git add .
+   $ git commit -m "Add a detailed commit message describing your changes."
+   ```
+   
+5. Push the branch to GitHub.
+   ```
+   git push --set-upstream origin feat/xyz
+   ```
+
+6. Create the pull request.
+   ```
+   gh pr create --base main --head feat/xyz --title "Your PR title" --body "Detailed description of the changes"
+   ```
+
+7. Or alternatively, you can visit the project GitHub page from the browser to create the pull request interactively.
