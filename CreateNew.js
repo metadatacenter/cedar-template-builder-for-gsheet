@@ -5,19 +5,37 @@ function createNew() {
   /*
    * Check mandatory data storage sheets.
    */
-  if (!ss.getSheetByName(FIELD_STORE_SHEET)) {
+  const hasFieldSheet = ss.getSheetByName(FIELD_STORE_SHEET);
+  const hasValueSetSheet = ss.getSheetByName(VALUESET_STORE_SHEET);
+  const hasPrefixSheet = ss.getSheetByName(PREFIX_STORE_SHEET);
+
+  const missingStorageSheet = !hasFieldSheet || !hasValueSetSheet || !hasPrefixSheet;
+
+  if (missingStorageSheet) {
+    const progressBar = startProcessing(ss, "Issue detected! Pausing the action...");
+    Utilities.sleep(3000);
+    finishProcessing(ss, progressBar);
+  }
+
+  if (!hasFieldSheet) {
     const progressBar = startProcessing(ss, "Initializing " + FIELD_STORE_SHEET + " sheet...")
     initFieldSheet(FIELD_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
-  if (!ss.getSheetByName(VALUESET_STORE_SHEET)) {
+  if (!hasValueSetSheet) {
     const progressBar = startProcessing(ss, "Initializing " + VALUESET_STORE_SHEET + " sheet...")
     initvalueSetSheet(VALUESET_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
-  if (!ss.getSheetByName(PREFIX_STORE_SHEET)) {
+  if (!hasPrefixSheet) {
     const progressBar = startProcessing(ss, "Initializing " + PREFIX_STORE_SHEET + " sheet...")
     initPrefixSheet(PREFIX_STORE_SHEET);
+    finishProcessing(ss, progressBar);
+  }
+
+  if (missingStorageSheet) {
+    const progressBar = startProcessing(ss, "Continuing new specification creation...");
+    Utilities.sleep(2000);
     finishProcessing(ss, progressBar);
   }
 
