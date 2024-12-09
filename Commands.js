@@ -1,7 +1,4 @@
 function onOpen(e) {
-  // When open or refresh, update the access rights
-  updateAccessRights();
-
   // Build the menu options
   const ui = SpreadsheetApp.getUi(); 
   ui.createMenu('🤖 Automation')
@@ -21,6 +18,9 @@ function onOpen(e) {
     .addSeparator()
     .addItem('Publish metadata specification to CEDAR', 'none')
     .addItem('Publish metadata vocabulary to BioPortal', 'none')
+    .addSeparator()
+    .addItem('Update access rights', 'updateAccessRights')
+    .addSeparator()
     .addItem('Configure...', 'none')
     .addToUi(); 
 };
@@ -90,6 +90,9 @@ function asList(str) {
 
 function updateAccessRights() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const progressBar = startProcessing(ss, "Updating, please wait...");
+
+  // Populate the owner and editors
   const owner = ss.getOwner();
   const editors = ss.getEditors();
   const authorizedUsers = [owner, ...editors];
@@ -105,4 +108,6 @@ function updateAccessRights() {
       protection.addEditors(authorizedUsers);
     }
   });
+
+  finishProcessing(ss, progressBar);
 }
