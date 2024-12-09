@@ -8,8 +8,9 @@ function createNew() {
   const hasFieldSheet = ss.getSheetByName(FIELD_STORE_SHEET);
   const hasValueSetSheet = ss.getSheetByName(VALUESET_STORE_SHEET);
   const hasPrefixSheet = ss.getSheetByName(PREFIX_STORE_SHEET);
+  const hasSettingSheet = ss.getSheetByName(SETTING_STORE_SHEET);
 
-  const missingStorageSheet = !hasFieldSheet || !hasValueSetSheet || !hasPrefixSheet;
+  const missingStorageSheet = !hasFieldSheet || !hasValueSetSheet || !hasPrefixSheet || !hasSettingSheet;
 
   if (missingStorageSheet) {
     const progressBar = startProcessing(ss, "Issue detected! Pausing the action...");
@@ -30,6 +31,11 @@ function createNew() {
   if (!hasPrefixSheet) {
     const progressBar = startProcessing(ss, "Initializing " + PREFIX_STORE_SHEET + " sheet...")
     initPrefixSheet(PREFIX_STORE_SHEET);
+    finishProcessing(ss, progressBar);
+  }
+  if (!hasSettingSheet) {
+    const progressBar = startProcessing(ss, "Initializing " + SETTING_STORE_SHEET + " sheet...")
+    initSettingSheet(SETTING_STORE_SHEET);
     finishProcessing(ss, progressBar);
   }
 
