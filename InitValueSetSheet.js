@@ -39,10 +39,11 @@ function initvalueSetSheet(sheetName) {
   const valueSetSheetRange = valueSetSheet.getRange(2, VALUESET_GLOSSARY_MAPPED_TO_TERM_ID, initialRowSize, initialColumnSize);
   valueSetSheetRange.setHorizontalAlignment("left").setVerticalAlignment("top");
 
-  const protection = valueSetSheet.protect().setDescription('Protected .VALUESET sheet');
-  const me = Session.getEffectiveUser();
+  // The sheet is protected only to the owner by default
+  const protection = valueSetSheet.protect().setDescription('Protected ' + sheetName + ' sheet');
+  const owner = ss.getOwner().getEmail();
   protection.removeEditors(protection.getEditors());
-  protection.addEditors([me.getEmail()]);
+  protection.addEditors([owner]);
 
   return valueSetSheet;
 }

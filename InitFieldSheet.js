@@ -31,10 +31,12 @@ function initFieldSheet(sheetName) {
   const fieldSheetRange = fieldSheet.getRange(2, FIELD_GLOSSARY_MAPPED_TO, initialRowSize, initialColumnSize);
   fieldSheetRange.setHorizontalAlignment("left").setVerticalAlignment("top");
 
-  const protection = fieldSheet.protect().setDescription('Protected .FIELDS sheet');
-  const me = Session.getEffectiveUser();
+  // The sheet is protected only to the owner by default
+  const protection = fieldSheet.protect().setDescription('Protected ' + sheetName + ' sheet');
+  const owner = ss.getOwner().getEmail();
   protection.removeEditors(protection.getEditors());
-  protection.addEditors([me.getEmail()]);
+  protection.addEditors([owner]);
 
   return fieldSheet;
 }
+

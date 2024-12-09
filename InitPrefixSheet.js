@@ -12,10 +12,11 @@ function initPrefixSheet(sheetName) {
   const PrefixSheetRange = prefixSheet.getRange(1, 1, initialRowSize, initialColumnSize);
   PrefixSheetRange.setHorizontalAlignment("left").setVerticalAlignment("top");
 
-  const protection = prefixSheet.protect().setDescription('Protected .PREFIX sheet');
-  const me = Session.getEffectiveUser();
+  // The sheet is protected only to the owner by default
+  const protection = prefixSheet.protect().setDescription('Protected ' + sheetName + ' sheet');
+  const owner = ss.getOwner().getEmail();
   protection.removeEditors(protection.getEditors());
-  protection.addEditors([me.getEmail()]);
+  protection.addEditors([owner]);
 
   return prefixSheet;
 }
