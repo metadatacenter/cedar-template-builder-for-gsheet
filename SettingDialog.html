@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        width: 150px; /* Fixed width for labels */
+        font-weight: bold;
+        margin-right: 10px;
+        text-align: right; /* Align labels to the right */
+      }
+      .form-group input {
+        flex: 1;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        margin-top: 12px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-group">
+      <label for="ontologyIri">Ontology IRI:</label>
+      <input type="text" id="ontologyIri" placeholder="e.g., https://bioportal.bioontology.org/ontologies/HRAVS">
+    </div>
+
+    <div class="form-group">
+      <label for="ontologyAcronym">Ontology Acronym:</label>
+      <input type="text" id="ontologyAcronym" placeholder="e.g., HRAVS">
+    </div>
+
+    <div class="form-group">
+      <label for="bioportalApi">BioPortal API Key:</label>
+      <input type="text" id="bioportalApi" placeholder="e.g., xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+    </div>
+    
+    <button onclick="saveSettings()">Save</button>
+
+    <script>
+      // Populate existing values from window.settings
+      window.onload = function() {
+        if (window.settings) {
+          document.getElementById('ontologyIri').value = window.settings.ONTOLOGY_IRI || '';
+          document.getElementById('ontologyAcronym').value = window.settings.ONTOLOGY_ACRONYM || '';
+          document.getElementById('bioportalApi').value = window.settings.BIOPORTAL_API_KEY || '';
+        }
+      };
+
+      function saveSettings() {
+        const parameters = {
+          ONTOLOGY_IRI: document.getElementById('ontologyIri').value,
+          ONTOLOGY_ACRONYM: document.getElementById('ontologyAcronym').value,
+          BIOPORTAL_API_KEY: document.getElementById('bioportalApi').value,
+        };
+
+        google.script.run.saveSettings(parameters);
+        google.script.host.close();
+      }
+    </script>
+  </body>
+</html>

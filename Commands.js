@@ -4,6 +4,8 @@ function onOpen(e) {
   ui.createMenu('🤖 Automation')
     .addItem('New metadata specification...', 'createNew')
     .addSeparator()
+    .addItem('Settings...', 'showSettingDialog')  
+    .addSeparator()
     .addItem('↓ Import', 'importFields')
     .addItem('↑ Export', 'exportFields')
     .addSeparator()
@@ -19,9 +21,7 @@ function onOpen(e) {
     .addItem('Publish metadata specification to CEDAR', 'none')
     .addItem('Publish metadata vocabulary to BioPortal', 'none')
     .addSeparator()
-    .addItem('Update access rights', 'updateAccessRights')
-    .addSeparator()
-    .addItem('Configure...', 'none')
+    .addItem('Update access rights', 'updateAccessRights')  
     .addToUi(); 
 };
 
