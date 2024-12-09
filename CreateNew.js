@@ -5,10 +5,10 @@ function createNew() {
   /*
    * Check mandatory data storage sheets.
    */
-  const hasFieldSheet = ss.getSheetByName(FIELD_STORE_SHEET);
-  const hasValueSetSheet = ss.getSheetByName(VALUESET_STORE_SHEET);
-  const hasPrefixSheet = ss.getSheetByName(PREFIX_STORE_SHEET);
-  const hasSettingSheet = ss.getSheetByName(SETTING_STORE_SHEET);
+  const hasFieldSheet = ss.getSheetByName(FIELD_SHEET);
+  const hasValueSetSheet = ss.getSheetByName(VALUESET_SHEET);
+  const hasPrefixSheet = ss.getSheetByName(PREFIX_SHEET);
+  const hasSettingSheet = ss.getSheetByName(SETTING_SHEET);
 
   const missingStorageSheet = !hasFieldSheet || !hasValueSetSheet || !hasPrefixSheet || !hasSettingSheet;
 
@@ -19,23 +19,23 @@ function createNew() {
   }
 
   if (!hasFieldSheet) {
-    const progressBar = startProcessing(ss, "Initializing " + FIELD_STORE_SHEET + " sheet...")
-    initFieldSheet(FIELD_STORE_SHEET);
+    const progressBar = startProcessing(ss, "Initializing " + FIELD_SHEET + " sheet...")
+    initFieldSheet(FIELD_SHEET);
     finishProcessing(ss, progressBar);
   }
   if (!hasValueSetSheet) {
-    const progressBar = startProcessing(ss, "Initializing " + VALUESET_STORE_SHEET + " sheet...")
-    initvalueSetSheet(VALUESET_STORE_SHEET);
+    const progressBar = startProcessing(ss, "Initializing " + VALUESET_SHEET + " sheet...")
+    initvalueSetSheet(VALUESET_SHEET);
     finishProcessing(ss, progressBar);
   }
   if (!hasPrefixSheet) {
-    const progressBar = startProcessing(ss, "Initializing " + PREFIX_STORE_SHEET + " sheet...")
-    initPrefixSheet(PREFIX_STORE_SHEET);
+    const progressBar = startProcessing(ss, "Initializing " + PREFIX_SHEET + " sheet...")
+    initPrefixSheet(PREFIX_SHEET);
     finishProcessing(ss, progressBar);
   }
   if (!hasSettingSheet) {
-    const progressBar = startProcessing(ss, "Initializing " + SETTING_STORE_SHEET + " sheet...")
-    initSettingSheet(SETTING_STORE_SHEET);
+    const progressBar = startProcessing(ss, "Initializing " + SETTING_SHEET + " sheet...")
+    initSettingSheet(SETTING_SHEET);
     finishProcessing(ss, progressBar);
   }
 
