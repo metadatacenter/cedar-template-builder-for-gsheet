@@ -1,4 +1,8 @@
 function onOpen(e) {
+  // When open or refresh, update the access rights
+  updateAccessRights();
+
+  // Build the menu options
   const ui = SpreadsheetApp.getUi(); 
   ui.createMenu('🤖 Automation')
     .addItem('New metadata specification...', 'createNew')
@@ -82,4 +86,23 @@ function showReport(title, htmlText) {
 
 function asList(str) {
   return `<li>${str}</li>`;
+}
+
+function updateAccessRights() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const owner = ss.getOwner();
+  const editors = ss.getEditors();
+  const authorizedUsers = [owner, ...editors];
+  const sheets = ss.getSheets();
+  
+  sheets.forEach(sheet => {
+    // Get the protection for the sheet
+    const protection = sheet.getProtections(SpreadsheetApp.ProtectionType.SHEET)[0];
+    if (protection?.canEdit()) { // check if the user has permission to edit it.
+      // Reset the protection for current editors
+      protection.removeEditors(protection.getEditors());
+      // Assign the access to new authorized users as new editors
+      protection.addEditors(authorizedUsers);
+    }
+  });
 }
