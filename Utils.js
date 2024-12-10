@@ -169,10 +169,16 @@ function getValuesFromColumn(sheet, column) {
   return range.getDisplayValues().flat();
 }
 
-function getFolderId(sheet) {
+function getFolderId() {
   const spreadsheetId = SpreadsheetApp.getActiveSpreadsheet().getId();
   const file = DriveApp.getFileById(spreadsheetId);
-  return file.getParents().next().getId();
+  const parents = file.getParents();
+  
+  if (parents.hasNext()) {
+    return parents.next().getId(); // Return the ID of the first parent folder
+  } else {
+    return DriveApp.getRootFolder().getId(); // Return the root folder ID if no parents exist
+  }
 }
 
 function getExportSheetUrl(sheet, format="xlsx") {
