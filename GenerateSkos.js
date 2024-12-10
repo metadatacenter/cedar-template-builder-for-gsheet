@@ -25,6 +25,7 @@ function getOntologyIri() {
       throw new Error("Ontology IRI is not set. Contact sheet owner to configure it.")
     }
   }
+  return ontologyIri;
 }
 
 function createSkosSheet() {
