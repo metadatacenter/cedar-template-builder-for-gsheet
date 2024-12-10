@@ -13,7 +13,7 @@ function showSettingDialog() {
 }
 
 function getSettings() {
-  const sheet = getSettingSheet();
+  const sheet = getOrCreateSettingSheet();
   const data = sheet.getDataRange().getValues();
   const settings = {};
   
@@ -22,6 +22,14 @@ function getSettings() {
     settings[data[i][0]] = data[i][1]; // Key is in column 1, value in column 2
   }
   return settings;
+}
+
+function getOrCreateSettingSheet() {
+  let sheet = getSettingSheet();
+  if (!sheet) {
+    sheet = initSettingSheet(SETTING_SHEET);
+  }
+  return sheet;
 }
 
 function getSetting(key) {
