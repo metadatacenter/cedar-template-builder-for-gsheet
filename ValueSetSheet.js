@@ -1,5 +1,5 @@
 function getValueSetSheet() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(".VALUESETS");
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(VALUESET_SHEET);
 }
 
 function searchValueSet(fieldName, data) {

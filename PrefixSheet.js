@@ -1,5 +1,5 @@
 function getPrefixSheet() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(".PREFIXES");
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(PREFIX_SHEET);
 }
 
 function getPrefixData() {

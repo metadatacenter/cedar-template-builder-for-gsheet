@@ -1,5 +1,5 @@
 function getFieldSheet() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(".FIELDS");
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(FIELD_SHEET);
 }
 
 function searchField(fieldName, data=getFieldData(minimal=true)) {
