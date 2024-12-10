@@ -59,16 +59,29 @@ function generateSkosTable(sheet, ontologyIri) {
 }
 
 function generateSkosFile(sheet) {
-  const baseUrl = "https://xls2rdf.sparna.fr/rest/convert";
-  const exportSheetUrl = getExportSheetUrl(sheet);
-  const encodedSheetUrl = encodeURIComponent(exportSheetUrl);
-  const url = `${baseUrl}?url=${encodedSheetUrl}&lang=en`;
-  Logger.log(url);
-  const response = UrlFetchApp.fetch(url);
-  const folderId = getFolderId(sheet);
-  const folder = DriveApp.getFolderById(folderId);
-  const dateTime = Utilities.formatDate(new Date(), getTimeZone(), "yyyy-MM-dd'T'HHmmss");
-  return folder.createFile(`skos-valueset_${dateTime}.ttl`, response);
+  const BASE_URL = "https://xls2rdf.sparna.fr/rest/convert";
+  try {
+    // Generate the export URL for the sheet and encode it
+    const exportSheetUrl = getExportSheetUrl(sheet);
+    const encodedSheetUrl = encodeURIComponent(exportSheetUrl);
+    const url = `${BASE_URL}?url=${encodedSheetUrl}&lang=en`;
+    
+    // Fetch the SKOS file from the external service
+    const response = UrlFetchApp.fetch(url);
+    
+    // Get the folder to store the file
+    const folderId = getFolderId();
+    const folder = DriveApp.getFolderById(folderId);
+    
+    // Generate a timestamp for the file name
+    const dateTime = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd'T'HHmmss");
+    
+    // Create and return the file in the folder
+    return folder.createFile(`skos-valueset_${dateTime}.ttl`, response.getContentText());
+  } catch (error) {
+    // Handle and log any errors
+    throw new Error(`Failed to generate SKOS file: ${error.message}`);
+  }
 }
 
 function showDownloadDialog(file) {
