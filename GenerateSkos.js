@@ -2,11 +2,22 @@ function generateSkos() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const progressBar = startProcessing(ss, "Preparing...")
   try {
+    // Get the user-defined ontology IRI
     const ontologyIri = getOntologyIri();
+
+    // Create a new sheet to contain the output
     const skosSheet = createSkosSheet();
+    skosSheet.hideSheet(); // hide it
+
+    // Generate a SKOS-Play table
     generateSkosTable(skosSheet, ontologyIri);
     SpreadsheetApp.flush();
+
+    // Generate the SKOS file
     const file = generateSkosFile(skosSheet);
+    ss.deleteSheet(skosSheet); // clean up
+
+    // Download the file
     showDownloadDialog(file);
   }
   catch (error) {
