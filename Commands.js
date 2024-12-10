@@ -1,28 +1,47 @@
 function onOpen(e) {
-  // Build the menu options
-  const ui = SpreadsheetApp.getUi(); 
-  ui.createMenu('🤖 Automation')
-    .addItem('New metadata specification...', 'createNew')
-    .addSeparator()
-    .addItem('Settings...', 'showSettingDialog')  
-    .addSeparator()
-    .addItem('↓ Import', 'importFields')
-    .addItem('↑ Export', 'exportFields')
-    .addSeparator()
-    .addItem('Synchronize', 'synchronizeFields')
-    .addSeparator()
-    .addItem('Rename a field...', 'none')
-    .addSeparator()
-    .addItem('Convert to CEDAR template...', 'none')
-    .addItem('Convert to LinkML schema...', 'generateLinkMl')
-    .addSeparator()
-    .addItem('Generate SKOS vocabulary...', 'generateSkos')
-    .addSeparator()
-    .addItem('Publish metadata specification to CEDAR', 'none')
-    .addItem('Publish metadata vocabulary to BioPortal', 'none')
-    .addSeparator()
-    .addItem('Update access rights', 'updateAccessRights')  
-    .addToUi(); 
+  if (isAuthorizationRequired()) {
+    // Build the menu options
+    const ui = SpreadsheetApp.getUi();
+    const menu = ui.createMenu('🤖 Automation');
+    
+    if (isOwner()) {
+      menu.addItem('New metadata specification...', 'createNew')
+        .addSeparator()
+        .addItem('Settings...', 'showSettingDialog')
+        .addSeparator()
+        .addItem('↓ Import', 'importFields')
+        .addItem('↑ Export', 'exportFields')
+        .addSeparator()
+        .addItem('Synchronize', 'synchronizeFields')
+        .addSeparator()
+        .addItem('Rename a field...', 'none')
+        .addSeparator()
+        .addItem('Convert to CEDAR template...', 'none')
+        .addItem('Convert to LinkML schema...', 'generateLinkMl')
+        .addSeparator()
+        .addItem('Generate SKOS vocabulary...', 'generateSkos')
+        .addSeparator()
+        .addItem('Publish metadata specification to CEDAR', 'none')
+        .addItem('Publish metadata vocabulary to BioPortal', 'none')
+        .addSeparator()
+        .addItem('Update access rights', 'updateAccessRights');
+    } else {
+      menu.addItem('New metadata specification...', 'createNew')
+        .addSeparator()
+        .addItem('↓ Import', 'importFields')
+        .addItem('↑ Export', 'exportFields')
+        .addSeparator()
+        .addItem('Synchronize', 'synchronizeFields')
+        .addSeparator()
+        .addItem('Rename a field...', 'none')
+        .addSeparator()
+        .addItem('Convert to CEDAR template...', 'none')
+        .addItem('Convert to LinkML schema...', 'generateLinkMl')
+        .addSeparator()
+        .addItem('Generate SKOS vocabulary...', 'generateSkos');
+    }
+    menu.addToUi();
+  }
 };
 
 function none() {
