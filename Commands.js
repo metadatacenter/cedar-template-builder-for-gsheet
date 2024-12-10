@@ -70,6 +70,13 @@ function onEdit(e) {
   }
 }
 
+function onSelectionChange(e) {
+  const settingSheet = getSettingSheet();
+  if (settingSheet && !settingSheet.isSheetHidden()) {
+    settingSheet.hideSheet();
+  }
+}
+
 function autoFillOut(cell) {
   const templateColumnIndex = cell.getColumn();
   if (templateColumnIndex != TEMPLATE_FIELD_NAME) {
