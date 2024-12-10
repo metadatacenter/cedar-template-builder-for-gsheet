@@ -118,13 +118,15 @@ function updateAccessRights() {
   const sheets = ss.getSheets();
   
   sheets.forEach(sheet => {
-    // Get the protection for the sheet
-    const protection = sheet.getProtections(SpreadsheetApp.ProtectionType.SHEET)[0];
-    if (protection?.canEdit()) { // check if the user has permission to edit it.
-      // Reset the protection for current editors
-      protection.removeEditors(protection.getEditors());
-      // Assign the access to new authorized users as new editors
-      protection.addEditors(authorizedUsers);
+    // Get the protection for the sheet, except .SETTINGS sheet.
+    if (sheet.getSheetName() !== SETTING_SHEET) {
+      const protection = sheet.getProtections(SpreadsheetApp.ProtectionType.SHEET)[0];
+      if (protection?.canEdit()) { // check if the user has permission to edit it.
+        // Reset the protection for current editors
+        protection.removeEditors(protection.getEditors());
+        // Assign the access to new authorized users as new editors
+        protection.addEditors(authorizedUsers);
+      }
     }
   });
 
