@@ -24,6 +24,13 @@ function getSettings() {
   return settings;
 }
 
+function getSetting(key) {
+  const sheet = getSettingSheet();
+  const data = sheet.getDataRange().getValues();
+  const row = data.find(row => row[0] === key);
+  return row ? row[1] : null;
+}
+
 function saveSettings(parameters) {
   const sheet = getSettingSheet();
 

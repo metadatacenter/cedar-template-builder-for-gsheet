@@ -1,15 +1,30 @@
 function generateSkos() {
-  const skosSheet = createSkosSheet();
-
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const progressBar = startProcessing(ss, "Preparing...")
+  try {
+    const ontologyIri = getOntologyIri();
+    const skosSheet = createSkosSheet();
+    generateSkosTable(skosSheet, ontologyIri);
+    SpreadsheetApp.flush();
+    const file = generateSkosFile(skosSheet);
+    showDownloadDialog(file);
+  }
+  catch (error) {
+    alert(error.message);
+  } finally {
+    finishProcessing(ss, progressBar);
+  }
+}
 
-  generateSkosTable(skosSheet);
-  SpreadsheetApp.flush();
-  const file = generateSkosFile(skosSheet);
-
-  finishProcessing(ss, progressBar);
-  showDownloadDialog(file);
+function getOntologyIri() {
+  const ontologyIri = getSetting(ONTOLOGY_IRI);
+  if (!ontologyIri) {
+    if (isOwner()) {
+      throw new Error("Ontology IRI is not set. Go to 'Automation > Settings...' to configure it.");
+    } else {
+      throw new Error("Ontology IRI is not set. Contact sheet owner to configure it.")
+    }
+  }
 }
 
 function createSkosSheet() {
@@ -23,9 +38,9 @@ function createSkosSheet() {
   return skosSheet;
 }
 
-function generateSkosTable(sheet) {
+function generateSkosTable(sheet, ontologyIri) {
   let endRow = 1;
-  endRow = createPreamble(sheet, 1);
+  endRow = createPreamble(sheet, 1, ontologyIri);
   endRow = createHeader(sheet, endRow + 1);
   endRow = createConceptRecords(sheet, endRow + 1);
   endRow = createFieldRecords(sheet, endRow + 1);
@@ -54,8 +69,8 @@ function showDownloadDialog(file) {
   SpreadsheetApp.getUi().showModalDialog(html, 'Download');
 }
 
-function createPreamble(sheet, startingRow) {
-  setValuesByRow(sheet, startingRow, [['ConceptScheme URI', 'https://purl.humanatlas.io/vocab/hravs']]);
+function createPreamble(sheet, startingRow, ontologyIri) {
+  setValuesByRow(sheet, startingRow, [['ConceptScheme URI', ontologyIri]]);
   const prefixes = getPrefixSheet().getDataRange().getValues().map((row) => ["PREFIX"].concat(row));
   setValuesByRow(sheet, startingRow + 1, prefixes);
   return startingRow + prefixes.length + 1;
