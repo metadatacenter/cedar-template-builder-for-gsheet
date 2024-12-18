@@ -33,7 +33,7 @@ function getOrCreateSettingSheet() {
 }
 
 function getSetting(key) {
-  const sheet = getSettingSheet();
+  const sheet = getOrCreateSettingSheet();
   const data = sheet.getDataRange().getValues();
   const row = data.find(row => row[0] === key);
   return row ? row[1] : null;
